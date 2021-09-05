@@ -40,7 +40,15 @@ tuple<double, vector<double> > potReg(double n, vector<vector<double>> A, vector
     for (int i = 0; i < n; i++) {
       lambdaNovo += vVelho[i]*vNovo[i];
     }
+    
     erro = abs((lambdaNovo-lambdaVelho)/lambdaNovo);
+    if (lambdaNovo == 0) {
+      if (abs(lambdaNovo-lambdaVelho) < erro) {
+        erro = 0;
+      } else {
+        erro = epsilon+1;
+      }
+    }
 
   }
 
